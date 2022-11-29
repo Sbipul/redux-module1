@@ -1,22 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useReducer } from 'react';
 
 function App() {
+  const initialState = 0;
+  const reducer = (state,action)=>{
+    if (action.type === 'INCREMENT') {
+      return state +1
+    } else if(action.type === 'DECREMENT') {
+      return state -1
+    }else{
+      return state
+    }
+  }
+  const [state,dispatch] = useReducer(reducer,initialState)
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
+        <h1>{state}</h1>
+        <button onClick={()=> dispatch({type:'INCREMENT'})}>increment</button>
+        <button onClick={()=> dispatch({type:'DECREMENT'})}>decrement</button>
       </header>
     </div>
   );
