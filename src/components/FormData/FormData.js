@@ -1,42 +1,8 @@
 import React, { useReducer } from "react";
+import { initialState, reducer } from "../../reducers/formReducer";
 
 const FormData = () => {
-  const initialState = {
-    first_name: "",
-    last_name: "",
-    email: "",
-    subject: "",
-    message: "",
-    gender: "",
-    skill: 0,
-    terms:false
-  };
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "INPUT":
-        return {
-          ...state,
-          [action.payload.name]: action.payload.value,
-        };
-        case "CHECKBOX" :
-        return{
-            ...state,
-            terms:!state.terms
-        }
-        case "INCREMENT" : 
-        return {
-            ...state,
-            skill : state.skill + action.payload
-        }
-        case "DECREMENT" : 
-        return {
-            ...state,
-            skill : state.skill - action.payload
-        }
-      default:
-        return state;
-    }
-  };
+  
   const [state, dispatch] = useReducer(reducer, initialState);
   const submit = (e) => {
     e.preventDefault();
