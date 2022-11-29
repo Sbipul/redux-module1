@@ -5,9 +5,9 @@ function App() {
   const initialState = 0;
   const reducer = (state,action)=>{
     if (action.type === 'INCREMENT') {
-      return state +1
+      return state + action.payload
     } else if(action.type === 'DECREMENT') {
-      return state -1
+      return state - action.payload
     }else{
       return state
     }
@@ -18,8 +18,8 @@ function App() {
       <header className="App-header">
         
         <h1>{state}</h1>
-        <button onClick={()=> dispatch({type:'INCREMENT'})}>increment</button>
-        <button onClick={()=> dispatch({type:'DECREMENT'})}>decrement</button>
+        <button onClick={()=> dispatch({type:'INCREMENT',payload:5})}>increment</button>
+        <button onClick={()=> dispatch({type:'DECREMENT',payload:2})}>decrement</button>
       </header>
     </div>
   );
